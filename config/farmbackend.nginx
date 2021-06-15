@@ -1,0 +1,24 @@
+server {
+    listen 4000;
+    server_name 172.105.111.226 farmbackend.ca;
+    root /apps/farmbackend;
+    index index.html;
+    server_tokens off;
+    charset utf-8;
+
+    access_log /var/log/nginx/farmbackend.access.log;
+    error_log /var/log/nginx/farmbackend.error.log;
+
+    location / {
+        try_files $uri @yourapplication;
+    }
+    location @yourapplication {
+        gzip            on;
+        gzip_buffers    8 256k;
+
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Protocol $scheme;
+    }
+}
