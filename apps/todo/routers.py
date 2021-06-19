@@ -15,7 +15,9 @@ async def create_task(request: Request, task: TaskModel = Body(...)):
         {"_id": new_task.inserted_id}
     )
 
-    return JSONResponse(status_code=status.HTTP_201_CREATED, content=created_task)
+    return JSONResponse(
+        status_code=status.HTTP_201_CREATED, content=created_task
+    )
 
 
 @router.get("/", response_description="List all tasks")
@@ -28,14 +30,18 @@ async def list_tasks(request: Request):
 
 @router.get("/{id}", response_description="Get a single task")
 async def show_task(id: str, request: Request):
-    if (task := await request.app.mongodb["tasks"].find_one({"_id": id})) is not None:
+    if (
+        task := await request.app.mongodb["tasks"].find_one({"_id": id})
+    ) is not None:
         return task
 
     raise HTTPException(status_code=404, detail=f"Task {id} not found")
 
 
 @router.put("/{id}", response_description="Update a task")
-async def update_task(id: str, request: Request, task: UpdateTaskModel = Body(...)):
+async def update_task(
+    id: str, request: Request, task: UpdateTaskModel = Body(...)
+):
     task = {k: v for k, v in task.dict().items() if v is not None}
 
     if len(task) >= 1:
@@ -45,12 +51,16 @@ async def update_task(id: str, request: Request, task: UpdateTaskModel = Body(..
 
         if update_result.modified_count == 1:
             if (
-                updated_task := await request.app.mongodb["tasks"].find_one({"_id": id})
+                updated_task := await request.app.mongodb["tasks"].find_one(
+                    {"_id": id}
+                )
             ) is not None:
                 return updated_task
 
     if (
-        existing_task := await request.app.mongodb["tasks"].find_one({"_id": id})
+        existing_task := await request.app.mongodb["tasks"].find_one(
+            {"_id": id}
+        )
     ) is not None:
         return existing_task
 
