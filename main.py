@@ -27,5 +27,5 @@ if __name__ == "__main__":
         "main:app",
         host=settings.HOST,
         reload=settings.DEBUG_MODE,
-        port=settings.PORT,
+        port=settings.PORT
     )
