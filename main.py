@@ -10,6 +10,8 @@ app = FastAPI()
 
 @app.on_event("startup")
 async def startup_db_client():
+    print(settings.DB_URL)
+    print(settings.DB_NAME)
     app.mongodb_client = AsyncIOMotorClient(settings.DB_URL)
     app.mongodb = app.mongodb_client[settings.DB_NAME]
 
