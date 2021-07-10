@@ -12,9 +12,8 @@ class ServerSettings(BaseSettings):
 
 
 class DatabaseSettings(BaseSettings):
-    DB_URL: str = "mongodb://mongo_user:mongo_password" \
-                  "@127.0.0.1:27017/farmstack"
-    DB_NAME: str = ""
+    DB_URL: str = "testdburl"
+    DB_NAME: str = "testdnname"
 
 
 class Settings(CommonSettings, ServerSettings, DatabaseSettings):
