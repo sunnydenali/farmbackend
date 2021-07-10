@@ -17,7 +17,8 @@ class DatabaseSettings(BaseSettings):
 
 
 class Settings(CommonSettings, ServerSettings, DatabaseSettings):
-    pass
+    class Config:
+        env_file = ".env"
 
 
 settings = Settings()
