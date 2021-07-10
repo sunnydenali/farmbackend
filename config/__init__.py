@@ -12,7 +12,8 @@ class ServerSettings(BaseSettings):
 
 
 class DatabaseSettings(BaseSettings):
-    DB_URL: str = "mongodb://mongo_user:mongo_password@127.0.0.1:27017"
+    DB_URL: str = "mongodb+srv://admin:admin@cluster0.5h28s.mongodb.net/Documents?" \
+            "retryWrites=true&w=majority"
     DB_NAME: str = "farmstack"
 
 
