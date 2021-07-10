@@ -12,8 +12,8 @@ class ServerSettings(BaseSettings):
 
 
 class DatabaseSettings(BaseSettings):
-    DB_URL: str = "mongodb+srv://admin:admin@cluster0.5h28s.mongodb.net/Documents?" \
-            "retryWrites=true&w=majority"
+    DB_URL: str = "mongodb+srv://admin:admin@cluster0.5h28s.mongodb.net/" \
+            "Documents?retryWrites=true&w=majority"
     DB_NAME: str = "farmstack"
 
 
