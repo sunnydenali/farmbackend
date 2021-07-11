@@ -2,7 +2,7 @@
 Introducing FARM - FastAPI, React &amp; MongoDB
 ****
 **Create environment variables (Update ~/.bashrc or ~/.bash_profile)**  
-export DEBUG_MODE=False
+export DEBUG_MODE=True
 export DB_URL="mongodb://mongo_user:mongo_password@127.0.0.1:27017/farmstack"
 export DB_NAME="farmstack"  
 
